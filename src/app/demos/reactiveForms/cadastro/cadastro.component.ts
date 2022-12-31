@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Usuario } from './models/usuario';
+
 
 @Component({
   selector: 'app-cadastro',
@@ -20,8 +21,10 @@ export class CadastroComponent implements OnInit {
       nome: ['', Validators.required],
       cpf: [''],
       email: ['', [Validators.required, Validators.email]],
-      senha: [''],
-      senhaConfirmacao: ['']
+      senha: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(3)]],
+      senhaConfirmacao: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(3)]]
+    }, {
+      validator: ConfirmedValidator('senha', 'senhaConfirmacao')
     });
   }
 
@@ -39,6 +42,22 @@ export class CadastroComponent implements OnInit {
 
   validarCampo(nome: string): boolean {
     return this.cadastroForm.get(nome).errors && (this.cadastroForm.get(nome).dirty || this.cadastroForm.get(nome).touched);
+  }
+}
+
+
+export function ConfirmedValidator(controlName: string, matchingControlName: string) {
+  return (formGroup: FormGroup) => {
+    const control = formGroup.controls[controlName];
+    const matchingControl = formGroup.controls[matchingControlName];
+    if (matchingControl.errors && !matchingControl.errors.confirmedValidator) {
+      return;
+    }
+    if (control.value !== matchingControl.value) {
+      matchingControl.setErrors({ confirmedValidator: true });
+    } else {
+      matchingControl.setErrors(null);
+    }
   }
 
 }
