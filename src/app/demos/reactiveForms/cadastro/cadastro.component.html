@@ -9,10 +9,8 @@
                 <label class="col-md-2 control-label" for="nome">Nome Completo</label>
                 <div class="col-md-10">
                     <input class="form-control" id="nome" type="text" placeholder="nome (requerido)"
-                        formControlName="nome"
-                        [ngClass]="{'is-invalid': cadastroForm.get('nome')?.errors && (cadastroForm.get('nome')?.dirty || cadastroForm.get('nome')?.touched)}" />
-                    <span class="text-danger"
-                        *ngIf="cadastroForm.get('nome')?.errors && (cadastroForm.get('nome').dirty || cadastroForm.get('nome').touched)">
+                        formControlName="nome" [ngClass]="{'is-invalid': validarCampo('nome')}" />
+                    <span class="text-danger" *ngIf="validarCampo('nome')">
                         <p>Preencha o campo nome</p>
                     </span>
                 </div>
@@ -31,8 +29,7 @@
                 <label class="col-md-2 control-label">E-mail</label>
                 <div class="col-md-10">
                     <input class="form-control" id="email" type="text" placeholder="E-mail (requerido)"
-                        formControlName="email"
-                        [ngClass]="{'is-invalid': cadastroForm.get('email')?.errors && (cadastroForm.get('email')?.dirty || cadastroForm.get('email')?.touched)}" />
+                        formControlName="email" [ngClass]="{'is-invalid': validarCampo('email')}" />
                     <span class="text-danger"
                         *ngIf="cadastroForm.get('email')?.errors?.required && (cadastroForm.get('email').dirty || cadastroForm.get('email').touched)">
                         <p>Preencha o campo email</p>

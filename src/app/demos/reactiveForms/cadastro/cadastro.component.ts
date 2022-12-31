@@ -37,4 +37,8 @@ export class CadastroComponent implements OnInit {
     }
   }
 
+  validarCampo(nome: string): boolean {
+    return this.cadastroForm.get(nome).errors && (this.cadastroForm.get(nome).dirty || this.cadastroForm.get(nome).touched);
+  }
+
 }
