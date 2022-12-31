@@ -14,10 +14,10 @@
             type="text"
             placeholder="nome (requerido)"
             formControlName="nome"
-            [ngClass]="{ 'is-invalid': validarCampo('nome') }"
+            [ngClass]="{ 'is-invalid': displayMessage.nome }"
           />
-          <span class="text-danger" *ngIf="validarCampo('nome')">
-            <p>Preencha o campo nome</p>
+          <span class="text-danger" *ngIf="displayMessage.nome">
+            <p [innerHTML]="displayMessage.nome"></p>
           </span>
         </div>
       </div>
@@ -44,27 +44,10 @@
             type="text"
             placeholder="E-mail (requerido)"
             formControlName="email"
-            [ngClass]="{ 'is-invalid': validarCampo('email') }"
+            [ngClass]="{ 'is-invalid': displayMessage.email }"
           />
-          <span
-            class="text-danger"
-            *ngIf="
-              cadastroForm.get('email')?.errors?.required &&
-              (cadastroForm.get('email').dirty ||
-                cadastroForm.get('email').touched)
-            "
-          >
-            <p>Preencha o campo email</p>
-          </span>
-          <span
-            class="text-danger"
-            *ngIf="
-              cadastroForm.get('email')?.errors?.email &&
-              (cadastroForm.get('email').dirty ||
-                cadastroForm.get('email').touched)
-            "
-          >
-            <p>E-mail em formato invalido</p>
+          <span class="text-danger" *ngIf="displayMessage.email">
+            <p [innerHTML]="displayMessage.email"></p>
           </span>
         </div>
       </div>
@@ -78,37 +61,10 @@
             type="password"
             placeholder="senha (requerido)"
             formControlName="senha"
-            [ngClass]="{ 'is-invalid': validarCampo('senha') }"
+            [ngClass]="{ 'is-invalid': displayMessage.senha }"
           />
-          <span
-            class="text-danger"
-            *ngIf="
-              cadastroForm.get('senha')?.errors?.required &&
-              (cadastroForm.get('senha').dirty ||
-                cadastroForm.get('senha').touched)
-            "
-          >
-            <p>Preencha o campo senha</p>
-          </span>
-          <span
-            class="text-danger"
-            *ngIf="
-              cadastroForm.get('senha')?.errors?.minlength &&
-              (cadastroForm.get('senha').dirty ||
-                cadastroForm.get('senha').touched)
-            "
-          >
-            <p>Senha muito pequena</p>
-          </span>
-          <span
-            class="text-danger"
-            *ngIf="
-              cadastroForm.get('senha')?.errors?.maxlength &&
-              (cadastroForm.get('senha').dirty ||
-                cadastroForm.get('senha').touched)
-            "
-          >
-            <p>Senha muito grande</p>
+          <span class="text-danger" *ngIf="displayMessage.senha">
+            <p [innerHTML]="displayMessage.senha"></p>
           </span>
         </div>
       </div>
@@ -122,48 +78,10 @@
             type="password"
             placeholder="confirme a senha (requerido)"
             formControlName="senhaConfirmacao"
-            [ngClass]="{ 'is-invalid': validarCampo('senha') }"
+            [ngClass]="{ 'is-invalid': displayMessage.senhaConfirmacao }"
           />
-          <span
-            class="text-danger"
-            *ngIf="
-              cadastroForm.get('senhaConfirmacao')?.errors?.required &&
-              (cadastroForm.get('senhaConfirmacao').dirty ||
-                cadastroForm.get('senhaConfirmacao').touched)
-            "
-          >
-            <p>Preencha o campo confirmacao da senha</p>
-          </span>
-          <span
-            class="text-danger"
-            *ngIf="
-              cadastroForm.get('senhaConfirmacao')?.errors?.minlength &&
-              (cadastroForm.get('senhaConfirmacao').dirty ||
-                cadastroForm.get('senhaConfirmacao').touched)
-            "
-          >
-            <p>Senha muito pequena</p>
-          </span>
-          <span
-            class="text-danger"
-            *ngIf="
-              cadastroForm.get('senhaConfirmacao')?.errors?.maxlength &&
-              (cadastroForm.get('senhaConfirmacao').dirty ||
-                cadastroForm.get('senhaConfirmacao').touched)
-            "
-          >
-            <p>Senha muito grande</p>
-          </span>
-          <span
-            class="text-danger"
-            *ngIf="
-              cadastroForm.get('senhaConfirmacao')?.errors
-                ?.confirmedValidator &&
-              (cadastroForm.get('senhaConfirmacao').dirty ||
-                cadastroForm.get('senhaConfirmacao').touched)
-            "
-          >
-            <p>Existe divergencias nas senhas</p>
+          <span class="text-danger" *ngIf="displayMessage.senhaConfirmacao">
+            <p [innerHTML]="displayMessage.senhaConfirmacao"></p>
           </span>
         </div>
       </div>
